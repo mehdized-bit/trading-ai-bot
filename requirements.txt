@@ -1,0 +1,2 @@
+requests==2.32.5
+appwrite==13.4.1
