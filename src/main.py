@@ -14,10 +14,11 @@ def main(context):
             'message': 'درست شد! 🎉'
         }
         
-        return context.response.json(result)
+        # در AppWrite جدید باید اینطور برگردونیم
+        return context.res.json(result)
         
     except Exception as e:
-        return context.response.json({
+        return context.res.json({
             'success': False,
             'error': str(e)
         })
