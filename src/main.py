@@ -7,17 +7,22 @@ def main(context):
         url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
         response = requests.get(url)
         price_data = response.json()
+        current_price = float(price_data['price'])
         
         result = {
             'success': True,
-            'price': float(price_data['price']),
-            'message': 'درست شد! 🎉'
+            'price': current_price,
+            'symbol': 'BTCUSDT',
+            'message': 'قیمت دریافت شد! 🎉'
         }
         
-        # در AppWrite جدید باید اینطور برگردونیم
+        # چاپ نتیجه در لاگ
+        context.log(f"قیمت بیت‌کوین: {current_price}")
+        
         return context.res.json(result)
         
     except Exception as e:
+        context.log(f"خطا: {str(e)}")
         return context.res.json({
             'success': False,
             'error': str(e)
